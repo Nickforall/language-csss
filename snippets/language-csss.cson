@@ -1,0 +1,28 @@
+'.csss.source':
+    'If-statement':
+        'prefix': 'if'
+        'body': '@if($1) {\n\t$0\n}'
+    'Else-If-statement':
+        'prefix': 'elif'
+        'body': '@elif($1) {\n\t$0\n}'
+    'If-Else-statement':
+        'prefix': 'ifel'
+        'body': '@if($1) {\n\t$0\n} @elif($2) {\n\t$0\n}'
+    'While-statement':
+        'prefix': 'while'
+        'body': '@while($1) {\n\t$0\n}'
+    'Require statement':
+        'prefix': 'req'
+        'body': '@require "$1";'
+    'RGB':
+        'prefix': 'rgb'
+        'body': 'rgb($1, $2, $3)'
+    'RGBA':
+        'prefix': 'rgba'
+        'body': 'rgba($1, $2, $3, $4)'
+    'HSL':
+        'prefix': 'rgb'
+        'body': 'hsl($1, $2, $3)'
+    'HSLA':
+        'prefix': 'rgba'
+        'body': 'hsla($1, $2, $3, $4)'

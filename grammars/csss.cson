@@ -1,0 +1,230 @@
+fileTypes: [
+  "csss"
+]
+name: "CSSS"
+patterns: [
+    {
+        match: "@(if|while|else|elif|require)"
+        name: "keyword.control.keys"
+    }
+    {
+        begin: "\""
+        end: "\""
+        name: "string.quoted.double"
+    }
+    {
+        begin: "\'"
+        end: "\'"
+        name: "string.quoted.single"
+    }
+    {
+        begin: "/\\*"
+        end: "\\*/"
+        name: "comment.block"
+    }
+    {
+        match: "(calc|rgba|rgb|hsla|hsl|url)"
+        name: "support.function"
+    }
+    {
+        match: '(?<!\\.)\\b(true|false)(?!\\s*:)\\b'
+        name: 'constant.language.boolean'
+    }
+
+    # FORKED FROM https://github.com/atom/language-css
+    # Copyright (c) 2014 GitHub Inc.
+      # HTML tagnames etc.
+      {
+              'match': '''(?xi) (?<![\\w:-])
+              (?:
+                  # HTML
+                  a|abbr|acronym|address|applet|area|article|aside|audio|b|base|basefont|bdi|bdo|bgsound
+                | big|blink|blockquote|body|br|button|canvas|caption|center|cite|code|col|colgroup|command
+                | content|data|datalist|dd|del|details|dfn|dialog|dir|div|dl|dt|element|em|embed|fieldset
+                | figcaption|figure|font|footer|form|frame|frameset|h[1-6]|head|header|hgroup|hr|html|i
+                | iframe|image|img|input|ins|isindex|kbd|keygen|label|legend|li|link|listing|main|map|mark
+                | marquee|math|menu|menuitem|meta|meter|multicol|nav|nextid|nobr|noembed|noframes|noscript
+                | object|ol|optgroup|option|output|p|param|picture|plaintext|pre|progress|q|rb|rp|rt|rtc
+                | ruby|s|samp|script|section|select|shadow|slot|small|source|spacer|span|strike|strong
+                | style|sub|summary|sup|table|tbody|td|template|textarea|tfoot|th|thead|time|title|tr
+                | track|tt|u|ul|var|video|wbr|xmp
+                # SVG
+                | altGlyph|altGlyphDef|altGlyphItem|animate|animateColor|animateMotion|animateTransform
+                | circle|clipPath|color-profile|cursor|defs|desc|discard|ellipse|feBlend|feColorMatrix
+                | feComponentTransfer|feComposite|feConvolveMatrix|feDiffuseLighting|feDisplacementMap
+                | feDistantLight|feDropShadow|feFlood|feFuncA|feFuncB|feFuncG|feFuncR|feGaussianBlur
+                | feImage|feMerge|feMergeNode|feMorphology|feOffset|fePointLight|feSpecularLighting
+                | feSpotLight|feTile|feTurbulence|filter|font-face|font-face-format|font-face-name
+                | font-face-src|font-face-uri|foreignObject|g|glyph|glyphRef|hatch|hatchpath|hkern
+                | line|linearGradient|marker|mask|mesh|meshgradient|meshpatch|meshrow|metadata
+                | missing-glyph|mpath|path|pattern|polygon|polyline|radialGradient|rect|set|solidcolor
+                | stop|svg|switch|symbol|text|textPath|tref|tspan|use|view|vkern
+                # MathML
+                | annotation|annotation-xml|maction|maligngroup|malignmark|math|menclose|merror|mfenced
+                | mfrac|mglyph|mi|mlabeledtr|mlongdiv|mmultiscripts|mn|mo|mover|mpadded|mphantom|mroot
+                | mrow|ms|mscarries|mscarry|msgroup|msline|mspace|msqrt|msrow|mstack|mstyle|msub|msubsup
+                | msup|mtable|mtd|mtext|mtr|munder|munderover|semantics
+              )
+              (?=[+~>\\s,.\\#|){:\\[]|/\\*|$)
+            '''
+            'name': 'entity.name.tag.css'
+      }
+      # CSS Properties
+      {
+        'match': '''(?xi) (?<![\\w-])
+          (above|absolute|active|add|additive|after-edge|alias|all|all-petite-caps|all-scroll|all-small-caps|alpha|alphabetic|alternate|alternate-reverse
+          |always|antialiased|auto|auto-pos|available|avoid|avoid-column|avoid-page|avoid-region|backwards|balance|baseline|before-edge|below|bevel
+          |bidi-override|blink|block|block-axis|block-start|block-end|bold|bolder|border|border-box|both|bottom|bottom-outside|break-all|break-word|bullets
+          |butt|capitalize|caption|cell|center|central|char|circle|clip|clone|close-quote|closest-corner|closest-side|col-resize|collapse|color|color-burn
+          |color-dodge|column|column-reverse|common-ligatures|compact|condensed|contain|content|content-box|contents|context-menu|contextual|copy|cover
+          |crisp-edges|crispEdges|crosshair|cyclic|darken|dashed|decimal|default|dense|diagonal-fractions|difference|digits|disabled|disc|discretionary-ligatures
+          |distribute|distribute-all-lines|distribute-letter|distribute-space|dot|dotted|double|double-circle|e-resize|each-line|ease|ease-in
+          |ease-in-out|ease-out|economy|ellipse|ellipsis|embed|end|evenodd|ew-resize|exact|exclude|exclusion|expanded|extends|extra-condensed|extra-expanded
+          |farthest-corner|farthest-side|fill|fill-available|fill-box|filled|fit-content|fixed|flat|flex|flex-end|flex-start|flip|forwards|freeze
+          |from-image|full-width|geometricPrecision|georgian|grab|grabbing|grayscale|grid|groove|hand|hanging|hard-light|help|hidden|hide
+          |historical-forms|historical-ligatures|horizontal|horizontal-tb|hue|icon|ideograph-alpha|ideograph-numeric|ideograph-parenthesis|ideograph-space
+          |ideographic|inactive|infinite|inherit|initial|inline|inline-axis|inline-block|inline-end|inline-flex|inline-grid|inline-list-item|inline-start
+          |inline-table|inset|inside|inter-character|inter-ideograph|inter-word|intersect|invert|isolate|isolate-override|italic|jis04|jis78|jis83
+          |jis90|justify|justify-all|kannada|keep-all|landscape|large|larger|left|lighten|lighter|line|line-edge|line-through|linear|linearRGB
+          |lining-nums|list-item|local|loose|lowercase|lr|lr-tb|ltr|luminance|luminosity|main-size|mandatory|manipulation|manual|margin-box|match-parent
+          |match-source|mathematical|max-content|medium|menu|message-box|middle|min-content|miter|mixed|move|multiply|n-resize|narrower|ne-resize
+          |nearest-neighbor|nesw-resize|newspaper|no-change|no-clip|no-close-quote|no-common-ligatures|no-contextual|no-discretionary-ligatures
+          |no-drop|no-historical-ligatures|no-open-quote|no-repeat|none|nonzero|normal|not-allowed|nowrap|ns-resize|numbers|numeric|nw-resize|nwse-resize
+          |oblique|oldstyle-nums|open|open-quote|optimizeLegibility|optimizeQuality|optimizeSpeed|ordinal|outset|outside|over|overlay|overline|padding
+          |padding-box|page|painted|pan-down|pan-left|pan-right|pan-up|pan-x|pan-y|paused|petite-caps|pixelated|plaintext|pointer|portrait|pre|pre-line
+          |pre-wrap|preserve-3d|progress|progressive|proportional-nums|proportional-width|proximity|radial|recto|region|relative|remove|repeat|repeat-[xy]
+          |reset-size|reverse|revert|ridge|right|rl|rl-tb|round|row|row-resize|row-reverse|row-severse|rtl|ruby|ruby-base|ruby-base-container|ruby-text
+          |ruby-text-container|run-in|running|s-resize|saturation|scale-down|screen|scroll|scroll-position|se-resize|semi-condensed|semi-expanded|separate
+          |sesame|show|sideways|sideways-left|sideways-lr|sideways-right|sideways-rl|simplified|slashed-zero|slice|small|small-caps|small-caption|smaller
+          |smooth|soft-light|solid|space|space-around|space-between|spell-out|square|sRGB|stacked-fractions|start|static|status-bar|step-end|step-start
+          |sticky|stretch|strict|stroke|stroke-box|style|sub|subgrid|subpixel-antialiased|subtract|super|sw-resize|symbolic|table|table-caption|table-cell
+          |table-column|table-column-group|table-footer-group|table-header-group|table-row|table-row-group|tabular-nums|tb|tb-rl|text|text-after-edge
+          |text-before-edge|text-bottom|text-top|thick|thin|titling-caps|top|top-outside|touch|traditional|transparent|triangle|ultra-condensed|ultra-expanded
+          |under|underline|unicase|unset|uppercase|upright|use-glyph-orientation|use-script|verso|vertical|vertical-ideographic|vertical-lr|vertical-rl
+          |vertical-text|view-box|visible|visibleFill|visiblePainted|visibleStroke|w-resize|wait|wavy|weight|whitespace|wider|words|wrap|wrap-reverse
+          |x-large|x-small|xx-large|xx-small|zero|zoom-in|zoom-out)
+          (?![\\w-])
+        '''
+        'name': 'support.constant.property-value.css'
+      }
+      {
+        'match': '''(?xi) (?<![\\w-])
+          (?:
+              # Standard CSS
+              additive-symbols|align-content|align-items|align-self|all|animation|animation-delay|animation-direction
+            | animation-duration|animation-fill-mode|animation-iteration-count|animation-name|animation-play-state
+            | animation-timing-function|backface-visibility|background|background-attachment|background-blend-mode
+            | background-clip|background-color|background-image|background-origin|background-position|background-position-[xy]
+            | background-repeat|background-size|block-size|border|border-block-end|border-block-end-color|border-block-end-style
+            | border-block-end-width|border-block-start|border-block-start-color|border-block-start-style
+            | border-block-start-width|border-bottom|border-bottom-color|border-bottom-left-radius|border-bottom-right-radius
+            | border-bottom-style|border-bottom-width|border-collapse|border-color|border-image|border-image-outset
+            | border-image-repeat|border-image-slice|border-image-source|border-image-width|border-inline-end
+            | border-inline-end-color|border-inline-end-style|border-inline-end-width|border-inline-start
+            | border-inline-start-color|border-inline-start-style|border-inline-start-width|border-left|border-left-color
+            | border-left-style|border-left-width|border-radius|border-right|border-right-color|border-right-style
+            | border-right-width|border-spacing|border-style|border-top|border-top-color|border-top-left-radius
+            | border-top-right-radius|border-top-style|border-top-width|border-width|bottom|box-decoration-break
+            | box-shadow|box-sizing|break-after|break-before|break-inside|caption-side|clear|clip|clip-path|color
+            | column-count|column-fill|column-gap|column-rule|column-rule-color|column-rule-style|column-rule-width
+            | column-span|column-width|columns|content|counter-increment|counter-reset|cursor|direction|display
+            | empty-cells|filter|flex|flex-basis|flex-direction|flex-flow|flex-grow|flex-shrink|flex-wrap|float
+            | font|font-family|font-feature-settings|font-kerning|font-language-override|font-size|font-size-adjust
+            | font-stretch|font-style|font-synthesis|font-variant|font-variant-alternates|font-variant-caps
+            | font-variant-east-asian|font-variant-ligatures|font-variant-numeric|font-variant-position|font-weight
+            | grid|grid-area|grid-auto-columns|grid-auto-flow|grid-auto-rows|grid-column|grid-column-end|grid-column-gap
+            | grid-column-start|grid-gap|grid-row|grid-row-end|grid-row-gap|grid-row-start|grid-template|grid-template-areas
+            | grid-template-columns|grid-template-rows|height|hyphens|image-orientation|image-rendering|image-resolution
+            | ime-mode|inline-size|isolation|justify-content|left|letter-spacing|line-break|line-height|list-style
+            | list-style-image|list-style-position|list-style-type|margin|margin-block-end|margin-block-start|margin-bottom
+            | margin-inline-end|margin-inline-start|margin-left|margin-right|margin-top|mask|mask-clip|mask-composite
+            | mask-image|mask-mode|mask-origin|mask-position|mask-repeat|mask-size|mask-type|max-block-size|max-height
+            | max-inline-size|max-width|max-zoom|min-block-size|min-height|min-inline-size|min-width|min-zoom|mix-blend-mode
+            | negative|object-fit|object-position|offset-block-end|offset-block-start|offset-inline-end|offset-inline-start
+            | opacity|order|orientation|orphans|outline|outline-color|outline-offset|outline-style|outline-width|overflow
+            | overflow-wrap|overflow-[xy]|pad|padding|padding-block-end|padding-block-start|padding-bottom|padding-inline-end
+            | padding-inline-start|padding-left|padding-right|padding-top|page-break-after|page-break-before|page-break-inside
+            | perspective|perspective-origin|pointer-events|position|prefix|quotes|range|resize|right|ruby-align|ruby-merge
+            | ruby-position|scroll-behavior|scroll-snap-coordinate|scroll-snap-destination|scroll-snap-type|shape-image-threshold
+            | shape-margin|shape-outside|speak-as|src|suffix|symbols|system|tab-size|table-layout|text-align|text-align-last
+            | text-combine-upright|text-decoration|text-decoration-color|text-decoration-line|text-decoration-style|text-emphasis
+            | text-emphasis-color|text-emphasis-position|text-emphasis-style|text-indent|text-orientation|text-overflow
+            | text-rendering|text-shadow|text-transform|text-underline-position|top|touch-action|transform|transform-box
+            | transform-origin|transform-style|transition|transition-delay|transition-duration|transition-property
+            | transition-timing-function|unicode-bidi|unicode-range|user-zoom|vertical-align|visibility|white-space|widows
+            | width|will-change|word-break|word-spacing|word-wrap|writing-mode|z-index|zoom
+            # SVG attributes
+            | alignment-baseline|baseline-shift|clip-rule|color-interpolation|color-interpolation-filters|color-profile
+            | color-rendering|dominant-baseline|enable-background|fill|fill-opacity|fill-rule|flood-color|flood-opacity
+            | glyph-orientation-horizontal|glyph-orientation-vertical|kerning|lighting-color|marker-end|marker-mid
+            | marker-start|shape-rendering|stop-color|stop-opacity|stroke|stroke-dasharray|stroke-dashoffset|stroke-linecap
+            | stroke-linejoin|stroke-miterlimit|stroke-opacity|stroke-width|text-anchor|x|y
+            # Not listed on MDN; presumably deprecated
+            | adjust|after|align|align-last|alignment|alignment-adjust|appearance|attachment|azimuth|background-break
+            | balance|baseline|before|bidi|binding|bookmark|bookmark-label|bookmark-level|bookmark-target|border-length
+            | bottom-color|bottom-left-radius|bottom-right-radius|bottom-style|bottom-width|box|box-align|box-direction
+            | box-flex|box-flex-group|box-lines|box-ordinal-group|box-orient|box-pack|break|character|collapse|column
+            | column-break-after|column-break-before|count|counter|crop|cue|cue-after|cue-before|decoration|decoration-break
+            | delay|display-model|display-role|down|drop|drop-initial-after-adjust|drop-initial-after-align|drop-initial-before-adjust
+            | drop-initial-before-align|drop-initial-size|drop-initial-value|duration|elevation|emphasis|family|fit|fit-position
+            | flex-group|float-offset|gap|grid-columns|grid-rows|hanging-punctuation|header|hyphenate|hyphenate-after|hyphenate-before
+            | hyphenate-character|hyphenate-lines|hyphenate-resource|icon|image|increment|indent|index|initial-after-adjust
+            | initial-after-align|initial-before-adjust|initial-before-align|initial-size|initial-value|inline-box-align|iteration-count
+            | justify|label|left-color|left-style|left-width|length|level|line|line-stacking|line-stacking-ruby|line-stacking-shift
+            | line-stacking-strategy|lines|list|mark|mark-after|mark-before|marks|marquee|marquee-direction|marquee-play-count|marquee-speed
+            | marquee-style|max|min|model|move-to|name|nav|nav-down|nav-index|nav-left|nav-right|nav-up|new|numeral|offset|ordinal-group
+            | orient|origin|overflow-style|overhang|pack|page|page-policy|pause|pause-after|pause-before|phonemes|pitch|pitch-range
+            | play-count|play-during|play-state|point|presentation|presentation-level|profile|property|punctuation|punctuation-trim
+            | radius|rate|rendering-intent|repeat|replace|reset|resolution|resource|respond-to|rest|rest-after|rest-before|richness
+            | right-color|right-style|right-width|role|rotation|rotation-point|rows|ruby|ruby-overhang|ruby-span|rule|rule-color
+            | rule-style|rule-width|shadow|size|size-adjust|sizing|space|space-collapse|spacing|span|speak|speak-header|speak-numeral
+            | speak-punctuation|speech|speech-rate|speed|stacking|stacking-ruby|stacking-shift|stacking-strategy|stress|stretch
+            | string-set|style|style-image|style-position|style-type|target|target-name|target-new|target-position|text|text-height
+            | text-justify|text-outline|text-replace|text-wrap|timing-function|top-color|top-left-radius|top-right-radius|top-style
+            | top-width|trim|unicode|up|user-select|variant|voice|voice-balance|voice-duration|voice-family|voice-pitch|voice-pitch-range
+            | voice-rate|voice-stress|voice-volume|volume|weight|white|white-space-collapse|word|wrap
+          )
+          (?![\\w-])
+        '''
+        'name': 'support.type.property-name.css'
+      }
+      {
+        'match': '(#)(?:[0-9a-fA-F]{3,4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})\\b'
+        'name': 'constant.other.color.rgb-value.hex.css'
+      }
+      # Numeric stuff
+      {
+        'captures':
+          '1':
+            'name': 'keyword.other.unit.percentage.css'
+          '2':
+            'name': 'keyword.other.unit.${2:/downcase}.css'
+        'match': '''(?xi) (?<![\\w-])
+          [-+]?                               # Sign indicator
+          (?:                                 # Numerals
+              [0-9]+ (?:\\.[0-9]+)?           # Integer/float with leading digits
+            | \\.[0-9]+                       # Float without leading digits
+          )
+          (?:                                 # Scientific notation
+            (?<=[0-9])                        # Exponent must follow a digit
+            E                                 # Exponent indicator
+            [-+]?                             # Possible sign indicator
+            [0-9]+                            # Exponent value
+          )?
+          (?:                                 # Possible unit for data-type:
+            (%)                               # - Percentage
+            | ( deg|grad|rad|turn             # - Angle
+              | Hz|kHz                        # - Frequency
+              | ch|cm|em|ex|in|mm|mozmm|pc|   # - Length
+                pt|px|q|rem|vh|vmax|vmin|vw
+              | dpi|dpcm|dppx                 # - Resolution
+              | s|ms                          # - Time
+              )
+            \\b                               # Boundary checking intentionally lax to
+          )?                                  # facilitate embedding in CSS-like grammars
+        '''
+        'name': 'constant.numeric.css'
+      }
+]
+scope: "CSSSlang"
+scopeName: "csss.source"

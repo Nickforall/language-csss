@@ -1,0 +1,12 @@
+{
+  "name": "csss-language",
+  "version": "0.0.0",
+  "description": "Language support for the esoteric language CSSS",
+  "keywords": [],
+  "repository": "https://github.com/nickforall/csss-language",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {}
+}
