@@ -1,9 +1,9 @@
 {
-  "name": "csss-language",
+  "name": "language-csss",
   "version": "0.0.0",
   "description": "Language support for the esoteric language CSSS",
   "keywords": [],
-  "repository": "https://github.com/nickforall/csss-language",
+  "repository": "https://github.com/Nickforall/language-csss",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
